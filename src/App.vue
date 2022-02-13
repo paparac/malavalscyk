@@ -1,30 +1,75 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <DomLayout />
+  <CanvasLayout />
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import CanvasLayout from "@/views/CanvasLayout.vue";
+import DomLayout from "@/views/DomLayout.vue";
+
+export default defineComponent({
+  name: "App",
+  components: { CanvasLayout, DomLayout },
+});
+</script>
+
 <style>
+@font-face {
+  font-family: "Fira Code";
+  src: url("/FiraCode.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-display: fallback;
+}
+
+:root {
+  --gap: 10px;
+  --black: rgb(20, 20, 20);
+  --white: rgb(242, 242, 242);
+  --trasition: ease 0.2s;
+  --borderRadius: 30px;
+
+  --textColor: var(--black);
+  --bgColor: var(--white);
+
+  --zIndex0: 0;
+  --zIndex1: 1;
+  --zIndex2: 10;
+  --zIndex3: 100;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Fira Code", monospace;
+}
+
+*::selection {
+  background: var(--textColor);
+  color: var(--bgColor);
+}
+
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  background: var(--bgColor);
+  color: var(--textColor);
+  width: 100%;
+  height: 100%;
+  padding: var(--gap);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 </style>
