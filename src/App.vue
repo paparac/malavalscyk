@@ -28,7 +28,7 @@ export default defineComponent({
   --black: rgb(20, 20, 20);
   --white: rgb(242, 242, 242);
   --trasition: ease 0.2s;
-  --borderRadius: 30px;
+  --borderRadius: 10px;
 
   --textColor: var(--black);
   --bgColor: var(--white);
@@ -57,6 +57,7 @@ body {
 }
 
 h1,
+h2,
 p {
   margin: 0;
 }

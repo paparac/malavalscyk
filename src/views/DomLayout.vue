@@ -1,29 +1,30 @@
 <template>
   <div id="dom-layout">
-    <MenuButton
+    <ToolsButton
       :isVisiblePanel="isVisiblePanel"
       :changeVisiblePanel="changeVisiblePanel"
+      content="Tools"
     />
-    <MenuPanel :isVisiblePanel="isVisiblePanel" />
+    <ToolsPanel :isVisiblePanel="isVisiblePanel" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import MenuButton from "@/components/MenuButton.vue";
-import MenuPanel from "@/components/MenuPanel.vue";
+import ToolsButton from "@/components/ToolsButton.vue";
+import ToolsPanel from "@/components/ToolsPanel.vue";
 
 export default defineComponent({
   name: "DomLayout",
 
-  components: { MenuButton, MenuPanel },
+  components: { ToolsButton, ToolsPanel },
 
   setup() {
     let isVisiblePanel = ref(false);
 
-    function changeVisiblePanel(): void {
+    const changeVisiblePanel = () => {
       isVisiblePanel.value = !isVisiblePanel.value;
-    }
+    };
 
     return {
       isVisiblePanel,
@@ -35,8 +36,15 @@ export default defineComponent({
 
 <style scoped>
 #dom-layout {
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+
+  left: var(--gap);
+  top: var(--gap);
   position: absolute;
 }
 </style>
