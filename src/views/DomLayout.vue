@@ -1,10 +1,6 @@
 <template>
   <div id="dom-layout">
-    <ToolsButton
-      :isVisiblePanel="isVisiblePanel"
-      :changeVisiblePanel="changeVisiblePanel"
-      content="Tools"
-    />
+    <ToolsButton :onClick="changeVisiblePanel" content="Tools" />
     <ToolsPanel :isVisiblePanel="isVisiblePanel" />
   </div>
 </template>
