@@ -1,18 +1,21 @@
 <template>
   <Transition name="fade">
     <div class="tools-panel" v-show="isVisiblePanel">
-      <ToolsButton content="Create Random Arc" :onClick="createArc" />
+      <ToolsButton content="Circle" :onClick="createCircle" />
+      <ToolsButton
+        content="Transparent Circle"
+        :onClick="createTransparentCircle"
+      />
       <ToolsButton content="Clear" :onClick="clearCtx" />
     </div>
   </Transition>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import ToolsButton from "@/components/ToolsButton.vue";
-import { ctxCreate } from "@/canvas/crxCreate";
-import { createSeveralRandomCircles } from "@/canvas/createSeveralRandomCircles";
-import { createRandomCircle } from "@/canvas/createRandomCircle";
+import { getCtx } from "@/utils/getCtx";
+import { createRandomCircle } from "@/utils/createRandomCircle";
 
 export default defineComponent({
   name: "ToolsPanel",
@@ -22,22 +25,22 @@ export default defineComponent({
   },
 
   setup() {
-    onMounted(() => {
-      const ctx = ctxCreate();
-      createSeveralRandomCircles(ctx);
-    });
-
-    const createArc = () => {
-      const ctx = ctxCreate();
+    const createCircle = () => {
+      const ctx = getCtx();
       createRandomCircle(ctx);
     };
 
+    const createTransparentCircle = () => {
+      const ctx = getCtx();
+      createRandomCircle(ctx, true);
+    };
+
     const clearCtx = () => {
-      const ctx = ctxCreate();
+      const ctx = getCtx();
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     };
 
-    return { createArc, clearCtx };
+    return { createCircle, createTransparentCircle, clearCtx };
   },
 });
 </script>

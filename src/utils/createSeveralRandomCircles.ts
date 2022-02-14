@@ -1,4 +1,4 @@
-import { createRandomCircle } from "@/canvas/createRandomCircle";
+import { createRandomCircle } from "@/utils/createRandomCircle";
 import { random } from "./random";
 
 export const createSeveralRandomCircles = (
