@@ -11,6 +11,11 @@
         content="Transparent Rect"
         :onClick="createTransparentRect"
       />
+      <ToolsButton content="Line" :onClick="createLine" />
+      <ToolsButton
+        content="Transparent Line"
+        :onClick="createTransparentLine"
+      />
       <ToolsButton content="Clear" :onClick="clearCtx" />
     </div>
   </Transition>
@@ -22,6 +27,7 @@ import ToolsButton from "@/components/ToolsButton.vue";
 import { getCtx } from "@/utils/getCtx";
 import { createRandomCircle } from "@/utils/createRandomCircle";
 import { createRandomRect } from "@/utils/createRandomRect";
+import { createRandomLine } from "@/utils/createRandomLine";
 
 export default defineComponent({
   name: "ToolsPanel",
@@ -51,6 +57,16 @@ export default defineComponent({
       createRandomRect(ctx, true);
     };
 
+    const createLine = () => {
+      const ctx = getCtx();
+      createRandomLine(ctx);
+    };
+
+    const createTransparentLine = () => {
+      const ctx = getCtx();
+      createRandomLine(ctx, true);
+    };
+
     const clearCtx = () => {
       const ctx = getCtx();
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -61,6 +77,8 @@ export default defineComponent({
       createTransparentCircle,
       createRect,
       createTransparentRect,
+      createLine,
+      createTransparentLine,
       clearCtx,
     };
   },
@@ -74,7 +92,7 @@ export default defineComponent({
   height: fit-content;
   display: flex;
   flex-wrap: wrap;
-  max-width: 80%;
+  max-width: 50%;
   max-height: 100%;
   gap: var(--gap);
   opacity: 0.8;
