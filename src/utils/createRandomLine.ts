@@ -14,7 +14,6 @@ export const createRandomLine = (
 
   const rect: Rect = new Rect(ctx, rX, rY, rWidth, rHeigth, rColor);
   rect.create();
-  console.log(rect);
 
   const rTime = random(0, 100);
 

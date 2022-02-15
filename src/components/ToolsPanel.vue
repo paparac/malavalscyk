@@ -3,6 +3,19 @@
     <div class="tools-panel" v-show="isVisiblePanel">
       <ToolsButton content="Circle" :onClick="createCircle" />
       <ToolsButton
+        content="Circle Radius"
+        :onClick="createRandomRadiusCircle"
+      />
+      <ToolsButton content="Circle Color" :onClick="createRandomColorCircle" />
+      <ToolsButton
+        content="Circle Transparent Color"
+        :onClick="createTransparentColorCircle"
+      />
+      <ToolsButton
+        content="Random Circle"
+        :onClick="createRandomRadiusTransparentCircle"
+      />
+      <ToolsButton
         content="Transparent Circle"
         :onClick="createTransparentCircle"
       />
@@ -42,6 +55,26 @@ export default defineComponent({
       createRandomCircle(ctx);
     };
 
+    const createRandomRadiusCircle = () => {
+      const ctx = getCtx();
+      createRandomCircle(ctx, false, false, true);
+    };
+
+    const createRandomRadiusTransparentCircle = () => {
+      const ctx = getCtx();
+      createRandomCircle(ctx, true, true, true);
+    };
+
+    const createRandomColorCircle = () => {
+      const ctx = getCtx();
+      createRandomCircle(ctx, false, true);
+    };
+
+    const createTransparentColorCircle = () => {
+      const ctx = getCtx();
+      createRandomCircle(ctx, true, true);
+    };
+
     const createTransparentCircle = () => {
       const ctx = getCtx();
       createRandomCircle(ctx, true);
@@ -74,6 +107,10 @@ export default defineComponent({
 
     return {
       createCircle,
+      createRandomColorCircle,
+      createRandomRadiusTransparentCircle,
+      createRandomRadiusCircle,
+      createTransparentColorCircle,
       createTransparentCircle,
       createRect,
       createTransparentRect,

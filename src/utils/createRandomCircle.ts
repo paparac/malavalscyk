@@ -4,7 +4,9 @@ import { getRandomColor } from "./getRandomColor";
 
 export const createRandomCircle = (
   ctx: CanvasRenderingContext2D,
-  transparent = false
+  transparent = false,
+  randomColor = false,
+  randomRadius = false,
 ): void => {
   const rX = random(30, ctx.canvas.width - 30);
   const rY = random(30, ctx.canvas.height - 30);
@@ -19,6 +21,8 @@ export const createRandomCircle = (
   setInterval(() => {
     const rXStep = random(-20, 20);
     const rYStep = random(-20, 20);
-    circle.change(circle.x + rXStep, circle.y + rYStep);
+    const rRad = randomRadius ? random(8, 20) : undefined;
+    const rColor = randomColor ? getRandomColor(transparent) : undefined;
+    circle.change(circle.x + rXStep, circle.y + rYStep, rRad, rColor);
   }, rTime);
 };
