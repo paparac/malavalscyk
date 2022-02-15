@@ -34,6 +34,7 @@
         content="Transparent Line"
         :onClick="createTransparentLine"
       />
+      <ToolsButton content="Random Line" :onClick="createAllRandomLine" />
       <ToolsButton content="Clear" :onClick="clearCtx" />
     </div>
   </Transition>
@@ -120,6 +121,11 @@ export default defineComponent({
       createRandomLine(ctx, true);
     };
 
+    const createAllRandomLine = () => {
+      const ctx = getCtx();
+      createRandomLine(ctx, true, true, true);
+    };
+
     const clearCtx = () => {
       const ctx = getCtx();
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -139,6 +145,7 @@ export default defineComponent({
       createAllRandomRect,
       createLine,
       createTransparentLine,
+      createAllRandomLine,
       clearCtx,
     };
   },
