@@ -31,10 +31,19 @@ export class Rect {
     return this;
   }
 
-  change(x = 0, y = 0): Rect {
+  change(
+    x = 0,
+    y = 0,
+    width = this.width,
+    height = this.heigth,
+    bgColor = this.bgColor
+  ): Rect {
     this.x = x > this.ctx.canvas.width ? 0 : x < 0 ? this.ctx.canvas.width : x;
     this.y =
       y > this.ctx.canvas.height ? 0 : y < 0 ? this.ctx.canvas.height : y;
+    this.width = width;
+    this.heigth = height;
+    this.bgColor = bgColor;
     this.create();
     return this;
   }

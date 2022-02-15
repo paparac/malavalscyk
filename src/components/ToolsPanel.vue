@@ -19,11 +19,16 @@
         content="Transparent Circle"
         :onClick="createTransparentCircle"
       />
+
       <ToolsButton content="Rect" :onClick="createRect" />
       <ToolsButton
         content="Transparent Rect"
         :onClick="createTransparentRect"
       />
+      <ToolsButton content="Rect Size" :onClick="createRandomSizeRect" />
+      <ToolsButton content="Rect Color" :onClick="createRandomColorRect" />
+      <ToolsButton content="Rect Random" :onClick="createAllRandomRect" />
+
       <ToolsButton content="Line" :onClick="createLine" />
       <ToolsButton
         content="Transparent Line"
@@ -90,6 +95,21 @@ export default defineComponent({
       createRandomRect(ctx, true);
     };
 
+    const createRandomSizeRect = () => {
+      const ctx = getCtx();
+      createRandomRect(ctx, true, true);
+    };
+
+    const createRandomColorRect = () => {
+      const ctx = getCtx();
+      createRandomRect(ctx, true, false, true);
+    };
+
+    const createAllRandomRect = () => {
+      const ctx = getCtx();
+      createRandomRect(ctx, true, true, true);
+    };
+
     const createLine = () => {
       const ctx = getCtx();
       createRandomLine(ctx);
@@ -114,6 +134,9 @@ export default defineComponent({
       createTransparentCircle,
       createRect,
       createTransparentRect,
+      createRandomSizeRect,
+      createRandomColorRect,
+      createAllRandomRect,
       createLine,
       createTransparentLine,
       clearCtx,
