@@ -159,7 +159,7 @@ export default defineComponent({
   height: fit-content;
   display: flex;
   flex-wrap: wrap;
-  max-width: 50%;
+  max-width: 35%;
   max-height: 100%;
   gap: var(--gap);
   opacity: 0.8;
