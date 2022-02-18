@@ -34,13 +34,15 @@ export default defineComponent({
 #dom-layout {
   width: fit-content;
   height: fit-content;
+  max-width: 60%;
+  max-height: 60%;
 
   display: flex;
   flex-direction: column;
   gap: var(--gap);
 
+  position: absolute;
   left: var(--gap);
   top: var(--gap);
-  position: absolute;
 }
 </style>

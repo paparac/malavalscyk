@@ -27,6 +27,7 @@ export default defineComponent({
   --gap: 10px;
   --black: rgb(20, 20, 20);
   --white: rgb(242, 242, 242);
+  --selfWhite: rgba(242, 242, 242, 0.5);
   --trasition: ease 0.2s;
   --borderRadius: 10px;
 
@@ -65,9 +66,11 @@ p {
 #app {
   background: var(--bgColor);
   color: var(--textColor);
+
   width: 100%;
   height: 100%;
   padding: var(--gap);
+
   display: flex;
   justify-content: center;
   align-items: center;
