@@ -1,5 +1,8 @@
 <template>
-  <button class="tools-button" @click="onClick">
+  <button
+    :class="`tools-button ${isActive ? 'is-active' : ''}`"
+    @click="onClick"
+  >
     {{ content }}
   </button>
 </template>
@@ -11,6 +14,7 @@ export default defineComponent({
   name: "ToolsButton",
   props: {
     onClick: Function,
+    isActive: Boolean,
     content: String,
   },
 });
@@ -22,16 +26,22 @@ export default defineComponent({
   --textColor: var(--white);
 
   background: var(--bgColor);
-  border: 0;
   color: var(--textColor);
-  font-weight: bold;
+  border: 0;
   border-radius: var(--borderRadius);
-  width: fit-content;
-  height: fit-content;
-  padding: 4px 8px;
   cursor: pointer;
   user-select: none;
   transition: var(--trasition);
+
+  font-weight: bold;
+
+  width: fit-content;
+  height: fit-content;
+  padding: 4px 8px;
+}
+
+.is-active {
+  opacity: 0.5;
 }
 
 .tools-button:hover {
