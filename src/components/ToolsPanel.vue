@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import ToolsButton from "@/components/ToolsButton.vue";
 import { getCtx } from "@/utils/getCtx";
 import { createRandomCircle } from "@/utils/createRandomCircle";
@@ -35,6 +35,29 @@ export default defineComponent({
   },
 
   setup() {
+    const circleSample = reactive({
+      x: 30,
+      y: 30,
+      radius: 10,
+      bgColor: "#c27171",
+    });
+
+    const rectSample = reactive({
+      x: 30,
+      y: 30,
+      width: 10,
+      heigth: 10,
+      bgColor: "#c27171",
+    });
+
+    const lineSample = reactive({
+      x: 30,
+      y: 30,
+      width: 3,
+      heigth: 100,
+      bgColor: "#c27171",
+    });
+
     const createCircle = () => {
       const ctx = getCtx();
       createRandomCircle(ctx);
