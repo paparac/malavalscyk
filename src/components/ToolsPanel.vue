@@ -4,6 +4,21 @@
       <div class="tools-panel-section">
         <h2 class="tools-panel-title">Circle</h2>
         <ToolsButton content="Create" :onClick="createCircle" />
+        <ToolsButton
+          content="Transparent"
+          :isActive="circleSample.transparent"
+          :onClick="() => changeCircleSample('transparent')"
+        />
+        <ToolsButton
+          content="R. Color"
+          :isActive="circleSample.randomColor"
+          :onClick="() => changeCircleSample('randomColor')"
+        />
+        <ToolsButton
+          content="R. Radius"
+          :isActive="circleSample.randomRadius"
+          :onClick="() => changeCircleSample('randomRadius')"
+        />
       </div>
 
       <div class="tools-panel-section">
@@ -36,10 +51,9 @@ export default defineComponent({
 
   setup() {
     const circleSample = reactive({
-      x: 30,
-      y: 30,
-      radius: 10,
-      bgColor: "#c27171",
+      transparent: true,
+      randomColor: false,
+      randomRadius: false,
     });
 
     const rectSample = reactive({
@@ -60,7 +74,11 @@ export default defineComponent({
 
     const createCircle = () => {
       const ctx = getCtx();
-      createRandomCircle(ctx);
+      createRandomCircle(ctx, circleSample);
+    };
+
+    const changeCircleSample = (property: keyof typeof circleSample) => {
+      circleSample[property] = !circleSample[property];
     };
 
     const createRect = () => {
@@ -75,6 +93,8 @@ export default defineComponent({
 
     return {
       createCircle,
+      circleSample,
+      changeCircleSample,
       createRect,
       createLine,
     };
