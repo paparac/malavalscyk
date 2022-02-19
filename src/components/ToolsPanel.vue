@@ -65,7 +65,7 @@
         <h2 class="tools-panel-title">Other</h2>
         <ToolsButton content="Clear" :onClick="clearCtx" />
         <ToolsButton
-          content="Clear 100 ms"
+          content="Clear 200 ms"
           :isActive="ctxClearTimeout.status"
           :onClick="clearCtxEvery200ms"
         />
