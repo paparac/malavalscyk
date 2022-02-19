@@ -60,6 +60,11 @@
           :onClick="() => changeLineSample('randomSize')"
         />
       </div>
+
+      <div class="tools-panel-section">
+        <h2 class="tools-panel-title">Other</h2>
+        <ToolsButton content="Clear" :onClick="clearCtx" />
+      </div>
     </div>
   </Transition>
 </template>
@@ -125,6 +130,11 @@ export default defineComponent({
       lineSample[property] = !lineSample[property];
     };
 
+    const clearCtx = () => {
+      const ctx = getCtx();
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    };
+
     return {
       createCircle,
       circleSample,
@@ -135,6 +145,7 @@ export default defineComponent({
       lineSample,
       createLine,
       changeLineSample,
+      clearCtx,
     };
   },
 });
