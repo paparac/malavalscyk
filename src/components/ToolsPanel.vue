@@ -64,6 +64,11 @@
       <div class="tools-panel-section">
         <h2 class="tools-panel-title">Other</h2>
         <ToolsButton content="Clear" :onClick="clearCtx" />
+        <ToolsButton
+          content="Clear 100 ms"
+          :isActive="ctxClearTimeout.status"
+          :onClick="clearCtxEvery100ms"
+        />
       </div>
     </div>
   </Transition>
@@ -135,6 +140,22 @@ export default defineComponent({
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     };
 
+    const ctxClearTimeout = reactive({
+      id: 0,
+      status: false,
+    });
+
+    const clearCtxEvery100ms = () => {
+      if (ctxClearTimeout.status) {
+        clearTimeout(ctxClearTimeout.id);
+        ctxClearTimeout.status = false;
+        return;
+      }
+
+      ctxClearTimeout.id = setInterval(() => clearCtx(), 100);
+      ctxClearTimeout.status = true;
+    };
+
     return {
       createCircle,
       circleSample,
@@ -146,6 +167,8 @@ export default defineComponent({
       createLine,
       changeLineSample,
       clearCtx,
+      clearCtxEvery100ms,
+      ctxClearTimeout,
     };
   },
 });
