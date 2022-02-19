@@ -24,7 +24,6 @@
       <div class="tools-panel-section">
         <h2 class="tools-panel-title">Rect</h2>
         <ToolsButton content="Create" :onClick="createRect" />
-
         <ToolsButton
           content="Transparent"
           :isActive="rectSample.transparent"
@@ -45,6 +44,21 @@
       <div class="tools-panel-section">
         <h2 class="tools-panel-title">Line</h2>
         <ToolsButton content="Create" :onClick="createLine" />
+        <ToolsButton
+          content="Transparent"
+          :isActive="lineSample.transparent"
+          :onClick="() => changeLineSample('transparent')"
+        />
+        <ToolsButton
+          content="R. Color"
+          :isActive="lineSample.randomColor"
+          :onClick="() => changeLineSample('randomColor')"
+        />
+        <ToolsButton
+          content="R. Size"
+          :isActive="lineSample.randomSize"
+          :onClick="() => changeLineSample('randomSize')"
+        />
       </div>
     </div>
   </Transition>
@@ -72,14 +86,6 @@ export default defineComponent({
       randomRadius: false,
     });
 
-    const lineSample = reactive({
-      x: 30,
-      y: 30,
-      width: 3,
-      heigth: 100,
-      bgColor: "#c27171",
-    });
-
     const createCircle = () => {
       const ctx = getCtx();
       createRandomCircle(ctx, circleSample);
@@ -104,9 +110,19 @@ export default defineComponent({
       rectSample[property] = !rectSample[property];
     };
 
+    const lineSample = reactive({
+      transparent: true,
+      randomSize: false,
+      randomColor: false,
+    });
+
     const createLine = () => {
       const ctx = getCtx();
-      createRandomLine(ctx);
+      createRandomLine(ctx, lineSample);
+    };
+
+    const changeLineSample = (property: keyof typeof lineSample) => {
+      lineSample[property] = !lineSample[property];
     };
 
     return {
@@ -116,7 +132,9 @@ export default defineComponent({
       createRect,
       rectSample,
       changeRectSample,
+      lineSample,
       createLine,
+      changeLineSample,
     };
   },
 });
