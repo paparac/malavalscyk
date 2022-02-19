@@ -67,7 +67,7 @@
         <ToolsButton
           content="Clear 100 ms"
           :isActive="ctxClearTimeout.status"
-          :onClick="clearCtxEvery100ms"
+          :onClick="clearCtxEvery200ms"
         />
       </div>
     </div>
@@ -145,14 +145,14 @@ export default defineComponent({
       status: false,
     });
 
-    const clearCtxEvery100ms = () => {
+    const clearCtxEvery200ms = () => {
       if (ctxClearTimeout.status) {
         clearTimeout(ctxClearTimeout.id);
         ctxClearTimeout.status = false;
         return;
       }
 
-      ctxClearTimeout.id = setInterval(() => clearCtx(), 100);
+      ctxClearTimeout.id = setInterval(() => clearCtx(), 200);
       ctxClearTimeout.status = true;
     };
 
@@ -167,7 +167,7 @@ export default defineComponent({
       createLine,
       changeLineSample,
       clearCtx,
-      clearCtxEvery100ms,
+      clearCtxEvery200ms,
       ctxClearTimeout,
     };
   },
