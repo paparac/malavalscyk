@@ -24,6 +24,22 @@
       <div class="tools-panel-section">
         <h2 class="tools-panel-title">Rect</h2>
         <ToolsButton content="Create" :onClick="createRect" />
+
+        <ToolsButton
+          content="Transparent"
+          :isActive="rectSample.transparent"
+          :onClick="() => changeRectSample('transparent')"
+        />
+        <ToolsButton
+          content="R. Color"
+          :isActive="rectSample.randomColor"
+          :onClick="() => changeRectSample('randomColor')"
+        />
+        <ToolsButton
+          content="R. Size"
+          :isActive="rectSample.randomSize"
+          :onClick="() => changeRectSample('randomSize')"
+        />
       </div>
 
       <div class="tools-panel-section">
@@ -56,14 +72,6 @@ export default defineComponent({
       randomRadius: false,
     });
 
-    const rectSample = reactive({
-      x: 30,
-      y: 30,
-      width: 10,
-      heigth: 10,
-      bgColor: "#c27171",
-    });
-
     const lineSample = reactive({
       x: 30,
       y: 30,
@@ -81,9 +89,19 @@ export default defineComponent({
       circleSample[property] = !circleSample[property];
     };
 
+    const rectSample = reactive({
+      transparent: true,
+      randomSize: false,
+      randomColor: false,
+    });
+
     const createRect = () => {
       const ctx = getCtx();
-      createRandomRect(ctx);
+      createRandomRect(ctx, rectSample);
+    };
+
+    const changeRectSample = (property: keyof typeof rectSample) => {
+      rectSample[property] = !rectSample[property];
     };
 
     const createLine = () => {
@@ -96,6 +114,8 @@ export default defineComponent({
       circleSample,
       changeCircleSample,
       createRect,
+      rectSample,
+      changeRectSample,
       createLine,
     };
   },

@@ -4,9 +4,7 @@ import { getRandomColor } from "./getRandomColor";
 
 export const createRandomRect = (
   ctx: CanvasRenderingContext2D,
-  transparent = false,
-  randomSize = false,
-  randomColor = false
+  { transparent = false, randomColor = false, randomSize = false }
 ): void => {
   const rX = random(30, ctx.canvas.width - 30);
   const rY = random(30, ctx.canvas.height - 30);
